@@ -17,11 +17,35 @@ import { resolveHtmlPath } from './util';
 
 class AppUpdater {
   constructor() {
+    log.transports.file.resolvePath = () =>
+      path.join(
+        '/Users/nick.peng/electron-autoUpdate/package.json',
+        'logs/main.log'
+      );
     log.transports.file.level = 'info';
     autoUpdater.logger = log;
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
+autoUpdater.on('update-available', () => {
+  log.info('update-available');
+});
+autoUpdater.on('update-not-available', () => {
+  log.info('update-not-available');
+});
+autoUpdater.on('error', () => {
+  log.info('error');
+});
+autoUpdater.on('checking-for-update', () => {
+  log.info('checking-for-update');
+});
+autoUpdater.on('download-progress', (progressTrack) => {
+  log.info('\n\ndownload-progress');
+  log.info(progressTrack);
+});
+autoUpdater.on('update-downloaded', () => {
+  log.info('download-progress');
+});
 
 let mainWindow: BrowserWindow | null = null;
 

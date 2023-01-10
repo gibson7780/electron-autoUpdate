@@ -114,6 +114,7 @@ const configuration: webpack.Configuration = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
       DEBUG_PROD: false,
+      GH_TOKEN: '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',
     }),
 
     new MiniCssExtractPlugin({

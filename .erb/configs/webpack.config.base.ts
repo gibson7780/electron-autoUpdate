@@ -52,6 +52,7 @@ const configuration: webpack.Configuration = {
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
+      GH_TOKEN: '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',
     }),
   ],
 };
