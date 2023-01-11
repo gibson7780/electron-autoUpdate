@@ -1,3 +1,4 @@
+/* eslint-disable promise/catch-or-return */
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 
 /**
@@ -9,7 +10,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -27,8 +28,19 @@ class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
-autoUpdater.on('update-available', () => {
+autoUpdater.on('update-available', (_event, releaseNotes, releaseName) => {
   log.info('update-available');
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['ok'],
+    title: 'Application Update',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail: 'A new version is being download.',
+  };
+
+  dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    if (returnValue.response === 0) autoUpdater.quitAndInstall();
+  });
 });
 autoUpdater.on('update-not-available', () => {
   log.info('update-not-available');
