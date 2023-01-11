@@ -1,5 +1,5 @@
 {
-  "description": "electron update demo",
+  "description": "A foundation for scalable desktop apps",
   "keywords": [
     "electron",
     "boilerplate",
@@ -11,12 +11,27 @@
     "hot",
     "reload"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+  "bugs": {
+    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gibson7780/electron-autoUpdate.git"
   },
   "license": "MIT",
+  "author": {
+    "name": "auto update demo",
+    "email": "gibson7780@gmail.com",
+    "url": "https://electron-react-boilerplate.js.org"
+  },
+  "contributors": [
+    {
+      "name": "nick peng",
+      "email": "gibson7780@gmail.com",
+      "url": "https://github.com/gibson7780"
+    }
+  ],
   "main": "./src/main/main.ts",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
